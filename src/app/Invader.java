@@ -11,8 +11,8 @@ public class Invader {
 	
 	public int worth;
 	
-	private int x;
-	private int y;  // Cartesian coordinates
+	public int x;
+	public int y;  // Cartesian coordinates
 	
 	public boolean movingLeft; 
 	public boolean movingRight;  // both cannot be true at same time, but both can be false

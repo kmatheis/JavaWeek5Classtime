@@ -6,7 +6,7 @@ public class Pet {
 
 	public String name;
 	public int age;
-	public String owner;
+	protected String owner;
 	
 	public Pet() {
 	}
@@ -18,7 +18,7 @@ public class Pet {
 	}
 	
 	public void speak() {
-		System.out.println( "AaaaOOOOga!" );
+		System.out.println( "Yawp!" );
 	}
 	
 	public void info() {

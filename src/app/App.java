@@ -46,7 +46,7 @@ public class App {
 		}
 		
 		boolean shouldDescend = false;
-		for ( int i = 0; i < 30; i++ ) {
+		for ( int i = 0; i < 60; i++ ) {
 			
 			draw( invaders );
 			try {
@@ -61,7 +61,8 @@ public class App {
 				shouldDescend = false;
 			} else {
 				for ( Invader inv : invaders ) {
-					shouldDescend = shouldDescend || inv.tick();
+					boolean res = inv.tick();               // always want to evaluate this
+					shouldDescend = shouldDescend || res;   // so two lines instead of one (avoiding tick() getting short-circuited)
 				}
 			}
 		}
@@ -78,7 +79,7 @@ public class App {
 
 		//// instance var naming vs. constructor parameter naming, instance methods vs. class methods (static etc)
 		
-		//// public vs. private vs. protected vs. no specifie
+		//// public vs. private vs. protected vs. no specifier
 		
 //		Cat sunshine = new Cat( "Sunshine", 10, "Ken", "shorthair" );
 //		sunshine.info();
@@ -91,19 +92,23 @@ public class App {
 		// protected: subclasses (no matter where they are) can access the field/method
 		//            also, anyone in your package can access the field/method
 		
-		// demo: change Pet.owner to protected: all will still work, but can't refer to sunshine.owner here in App.java
-		
-		// no-access specifier: "package-private", so only things in the package can refer to it; outside subclasses can't.
-		
-		// demo: remove Pet.owner's access specifier: Cat can refer to owner, but SugarGlider can't refer to owner.
+		// demo: change Pet.owner to protected: 84-86 will still work, but can't refer to sunshine.owner here in App.java
+//		 System.out.println( sunshine.owner );
 		
 //		SugarGlider iana = new SugarGlider( "Iana", 5, "Ken", "traditional" );
 //		iana.info();
 //		iana.speak();
 		
+		// demo: keep Pet.owner protected: 98-100 still works
+		
+		// no-access specifier: "package-private", so only things in the package can refer to it; outside subclasses can't.
+		
+		// demo: remove Pet.owner's access specifier: Cat can refer to owner, but SugarGlider can't refer to owner.
+
+		
 		//// AEIP
-		// A
-		// E: (getters and setters on Invaders)
+		// A: what we care about modelling in the first place
+		// E: (e.g., getters and setters on Invaders, or private methods as helpers)
 		// P: one kind: Cat and SugarGlider overriding speak()
 		//    another form: overload SugarGlider.speak() to take an input
 //		iana.speak( true );
